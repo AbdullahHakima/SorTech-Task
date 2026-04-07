@@ -1,4 +1,4 @@
-# GeoGuard API 🛡️
+# GeoGuard API
 
 A high-performance, stateless .NET Core Web API for managing country-based IP blocking. Built with thread-safe in-memory collections and external geolocation integration.
 
