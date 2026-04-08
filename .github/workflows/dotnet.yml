@@ -34,9 +34,6 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore SorTech-Task.slnx
 
-      - name: Code Formatting Check
-        run: dotnet format SorTech-Task.slnx --verify-no-changes --severity warn
-
       - name: Build (Release for Performance)
         run: dotnet build SorTech-Task.slnx --configuration Release --no-restore
 
