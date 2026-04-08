@@ -1,5 +1,4 @@
-﻿using GeoGuard.Domain.Controllers.BlockedCountries.DTOs;
-using GeoGuard.Domain.Common;
+﻿using GeoGuard.Domain.Common;
 using GeoGuard.Domain.DTOs;
 using GeoGuard.Domain.Entities;
 using GeoGuard.Domain.ValueObjects;
@@ -8,8 +7,10 @@ namespace GeoGuard.Domain.Interfaces;
 
 public interface IBlockedCountryRepository
 {
-    Task<Result<BlockedCountry>> AddAsync(AddCountryToBlockedListRequest request);
-    Task<Result<BlockedCountry>> RemoveAsync(string countryCodeString);
+    Task<Result<BlockedCountry>> AddAsync(BlockedCountry blockedCountry);
+    Task<Result<BlockedCountry>> RemoveAsync(CountryCode countryCode);
     Task<Result<BlockedCountry>> GetByCodeAsync(CountryCode code);
-    Task<Result<PagedResult<BlockedCountry>>> GetAllAsync(GetBlockedListRequest request);
+    Task<Result<PagedResult<BlockedCountry>>> GetAllAsync(string? countryName, CountryCode? countryCode,
+                                                          int pageNumber = 1, int pageSize = 20);
+
 }

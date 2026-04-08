@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GeoGuard.Domain;
 
-public static class dependencyInjection
+public static class DependencyInjection
 {
     public static IServiceCollection AddDomainServices(this IServiceCollection services)
     {

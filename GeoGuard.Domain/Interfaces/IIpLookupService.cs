@@ -6,5 +6,7 @@ namespace GeoGuard.Domain.Interfaces;
 
 public interface IIpLookupService
 {
-    Task<Result<GeolocationResponse>> GetCountryCodeAsync(IPAddress ipAddress);
+    Task<Result<GeolocationResponse>> GetIpDetailsAsync(IPAddress ipAddress);
+    Task<Result<string>> GetCountryCodeAsync(IPAddress ipAddress);
+
 }

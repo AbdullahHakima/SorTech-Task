@@ -26,7 +26,7 @@ public class BlockVerificationService:IBlockVerificationService
         if (!geoResponse.IsSuccess)
             return Result<bool>.NotFound($"the country code for ip:{ipAddress} not found.");
 
-        var countryCode = new CountryCode(geoResponse.Value!.CountryCode2);
+        var countryCode = new CountryCode(geoResponse.Value!);
         var blockedCountryResult = await _countryRepository.GetByCodeAsync(countryCode);
         if (!blockedCountryResult.IsSuccess)
         {

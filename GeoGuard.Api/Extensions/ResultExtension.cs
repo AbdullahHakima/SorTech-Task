@@ -5,7 +5,7 @@ namespace GeoGuard.Api.Extensions;
 
 public static class ResultExtension
 {
-    public static async Task<IActionResult> ToActionResult<T>(this Result<T> result,ControllerBase controller)
+    public static IActionResult ToActionResult<T>(this Result<T> result,ControllerBase controller)
     {
         if (result.IsSuccess)
             return controller.Ok(result.Value);
@@ -18,7 +18,7 @@ public static class ResultExtension
         };
     }
 
-    public static async Task<IActionResult> ToActionResult(this Result result, ControllerBase controller)
+    public static IActionResult ToActionResult(this Result result, ControllerBase controller)
     {
         if (result.IsSuccess)
             return controller.Ok();
