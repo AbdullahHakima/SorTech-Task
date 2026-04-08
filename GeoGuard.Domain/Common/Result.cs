@@ -7,7 +7,7 @@ public class Result<T>
     public bool IsFailure => !IsSuccess;
     public int StatusCode { get; }
     public string Error { get; } = string.Empty;
-    private Result(bool isSuccess,T?value,int statusCode,string error)
+    private Result(bool isSuccess, T? value, int statusCode, string error)
     {
         IsSuccess = isSuccess;
         Value = value;

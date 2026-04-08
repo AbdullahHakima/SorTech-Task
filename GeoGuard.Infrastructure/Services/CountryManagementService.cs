@@ -13,7 +13,7 @@ public class CountryManagementService : ICountryManagementService
     private readonly IBlockedCountryRepository _countryRepository;
     private readonly ICountryNameService _countryNameService;
 
-    public CountryManagementService(IBlockedCountryRepository countryRepository,ICountryNameService countryNameService)
+    public CountryManagementService(IBlockedCountryRepository countryRepository, ICountryNameService countryNameService)
     {
         _countryRepository = countryRepository;
         _countryNameService = countryNameService;
@@ -29,10 +29,10 @@ public class CountryManagementService : ICountryManagementService
 
     public async Task<Result<PagedResult<BlockedCountry>>> BlockedListAsync(string? countryName, string? countryCodeString, int pageNumber = 1, int pageSize = 20)
     {
-        pageSize=pageSize > 50 ? Math.Clamp(pageSize, 20, 50) : pageSize;
+        pageSize = pageSize > 50 ? Math.Clamp(pageSize, 20, 50) : pageSize;
         if (!string.IsNullOrEmpty(countryName) && !string.IsNullOrEmpty(countryCodeString))
             throw new GeoGuardSeviceException("Can not seach by country code and country name at same time");
-        if(!string.IsNullOrEmpty(countryCodeString))
+        if (!string.IsNullOrEmpty(countryCodeString))
         {
             var countryCode = new CountryCode(countryCodeString);
             return await _countryRepository.GetAllAsync(null, countryCode, pageNumber, pageSize);
@@ -51,7 +51,7 @@ public class CountryManagementService : ICountryManagementService
         string countryName = await _countryNameService.GetName(countryCode);
         var blockedCountry = BlockedCountry.Create(countryName, countryCode, DateTime.UtcNow, expiration);
         return await _countryRepository.AddAsync(blockedCountry);
-        
+
     }
 
     public async Task<Result<BlockedCountry>> UnblockCountryAsync(string countryCodeString)

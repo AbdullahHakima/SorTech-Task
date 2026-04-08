@@ -18,19 +18,19 @@ public class CountriesController : ControllerBase
     }
 
     [HttpPost("block")]
-    public async Task<IActionResult> AddToBlockList( [FromBody] string countryCodeString)
+    public async Task<IActionResult> AddToBlockList([FromBody] string countryCodeString)
              => (await _countryManagement.BlockCountryAsync(countryCodeString)).ToActionResult(this);
 
     [HttpDelete("block/{countryCode}")]
     public async Task<IActionResult> RemoveFromBlockedList([FromRoute] string countryCode)
-            =>( await _countryManagement.UnblockCountryAsync(countryCode)).ToActionResult(this);
+            => (await _countryManagement.UnblockCountryAsync(countryCode)).ToActionResult(this);
     [HttpGet("blocked")]
     public async Task<IActionResult> GetBlockedList([FromQuery] GetBlockedListRequest request)
-    => (await _countryManagement.BlockedListAsync(request.CountryName,request.CountryCode,
-                        request.PageNumber,request.PageSize)).ToActionResult(this);
+    => (await _countryManagement.BlockedListAsync(request.CountryName, request.CountryCode,
+                        request.PageNumber, request.PageSize)).ToActionResult(this);
     [HttpPost("temporal-block")]
     public async Task<IActionResult> AddTemporalBlock([FromBody] TemporalBlockRequest request)
-    => (await _countryManagement.TemporalBlockCountryAsync(request.CountryCode,request.DurationMinutes))
+    => (await _countryManagement.TemporalBlockCountryAsync(request.CountryCode, request.DurationMinutes))
                                .ToActionResult(this);
 
 

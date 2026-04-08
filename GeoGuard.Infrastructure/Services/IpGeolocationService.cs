@@ -14,7 +14,7 @@ public class IpGeolocationService : IIpLookupService
     private readonly string _apiKey;
     private readonly JsonSerializerOptions _jsonOptions;
 
-    public IpGeolocationService(HttpClient httpClient,IConfiguration configuration)
+    public IpGeolocationService(HttpClient httpClient, IConfiguration configuration)
     {
         _httpClient = httpClient;
         _apiKey = configuration["ipgeolocation.io:ApiKey"]

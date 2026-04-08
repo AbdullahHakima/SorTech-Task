@@ -11,12 +11,12 @@ public class BlockedCountry
     private BlockedCountry() { }
 
     public static BlockedCountry Create(string name, CountryCode countryCode, DateTime blockedAt,
-           DateTime? expirationTime)=> new()
-    {
-        Name=name,
-        CountryCode = countryCode,
-        BlockedAt = blockedAt,
-        ExpirationTime = expirationTime
-    };
+           DateTime? expirationTime) => new()
+           {
+               Name = name,
+               CountryCode = countryCode,
+               BlockedAt = blockedAt,
+               ExpirationTime = expirationTime
+           };
 
 }

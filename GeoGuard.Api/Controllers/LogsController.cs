@@ -16,7 +16,7 @@ namespace GeoGuard.Api.Controllers
         }
         [HttpGet("blocked-attempts")]
         public async Task<IActionResult> AttemptList([FromQuery] int page = 1, int pageSize = 20)
-                    =>(await _attemptRepository.GetAllAsync(page, pageSize)).ToActionResult(this);
-        
+                    => (await _attemptRepository.GetAllAsync(page, pageSize)).ToActionResult(this);
+
     }
 }

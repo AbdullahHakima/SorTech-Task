@@ -13,13 +13,13 @@ public class InMemoryBlockedAttemptRepository : IBlockedAttemptRepository
     public async Task<Result> AddLogAsync(BlockedAttemptLog attemptLog)
     {
         _logs.Enqueue(attemptLog);
-       return Result.Success();
+        return Result.Success();
     }
 
-    public async Task<Result<PagedResult<BlockedAttemptLog>>> GetAllAsync(int pageNumber=1,int pageSize=20)
+    public async Task<Result<PagedResult<BlockedAttemptLog>>> GetAllAsync(int pageNumber = 1, int pageSize = 20)
     {
         pageSize = pageSize > 50 ? Math.Clamp(pageSize, 20, 50) : pageSize;
-        var query = _logs.AsQueryable().OrderByDescending(q=>q.TimeStamp);
+        var query = _logs.AsQueryable().OrderByDescending(q => q.TimeStamp);
         int totalCount = query.Count();
         if (totalCount == 0)
             return Result<PagedResult<BlockedAttemptLog>>.Success(

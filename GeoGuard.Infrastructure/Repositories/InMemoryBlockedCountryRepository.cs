@@ -31,7 +31,7 @@ public class InMemoryBlockedCountryRepository : IBlockedCountryRepository
                                                                        int pageNumber = 1, int pageSize = 20)
     {
         await Task.CompletedTask;
-        var query =  _context.Values.AsQueryable();
+        var query = _context.Values.AsQueryable();
         if (countryCode is not null)
             query = query.Where(q => q.CountryCode == countryCode);
         if (!string.IsNullOrEmpty(countryName))
@@ -43,12 +43,12 @@ public class InMemoryBlockedCountryRepository : IBlockedCountryRepository
                                                          pageNumber, []));
 
         int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
-        var countries =  query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+        var countries = query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
         return Result<PagedResult<BlockedCountry>>.Success(
                                 new PagedResult<BlockedCountry>(
-                                 totalCount,totalPages,
-                                 pageNumber,countries));
+                                 totalCount, totalPages,
+                                 pageNumber, countries));
 
     }
 

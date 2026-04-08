@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace GeoGuard.Infrastructure.BackgroundServices;
 
-public class TemporalBlockExpirationWorker:BackgroundService
+public class TemporalBlockExpirationWorker : BackgroundService
 {
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<TemporalBlockExpirationWorker> _logger;
@@ -20,7 +20,7 @@ public class TemporalBlockExpirationWorker:BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         _logger.LogInformation("Temporal Block Expiration Worker started.");
-        while(!stoppingToken.IsCancellationRequested)
+        while (!stoppingToken.IsCancellationRequested)
         {
             await Task.Delay(_interval, stoppingToken);
             await CleanupExpiredBlocksAsync();
@@ -30,15 +30,15 @@ public class TemporalBlockExpirationWorker:BackgroundService
     private async Task CleanupExpiredBlocksAsync()
     {
         _logger.LogInformation("Running expired temporal block cleanup at {Time}", DateTime.UtcNow);
-         using var scope = _serviceProvider.CreateScope();
+        using var scope = _serviceProvider.CreateScope();
         var repository = scope.ServiceProvider.GetRequiredService<IBlockedCountryRepository>();
         var allResult = await repository.GetAllAsync(null, null, 1, int.MaxValue);
-        if (!allResult.IsSuccess) 
+        if (!allResult.IsSuccess)
             return;
         var expired = allResult.Value!.Items
-                    .Where(bc => bc.ExpirationTime.HasValue 
+                    .Where(bc => bc.ExpirationTime.HasValue
                     && bc.ExpirationTime <= DateTime.UtcNow).ToList();
-        foreach(var country in expired)
+        foreach (var country in expired)
         {
             await repository.RemoveAsync(country.CountryCode);
             _logger.LogInformation("Expired temporal block removed for country: {Code}",

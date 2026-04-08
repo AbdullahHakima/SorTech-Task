@@ -32,16 +32,16 @@ jobs:
             **/global.json
 
       - name: Restore dependencies
-        run: dotnet restore GeoGuard.Api/GeoGuard.Api.csproj && dotnet restore GeoGuard.Tests/GeoGuard.Tests.csproj
+        run: dotnet restore SorTech-Task.slnx
 
       - name: Code Formatting Check
-        run: dotnet format GeoGuard.Api/GeoGuard.Api.csproj --verify-no-changes --severity warn && dotnet format GeoGuard.Tests/GeoGuard.Tests.csproj --verify-no-changes --severity warn
+        run: dotnet format SorTech-Task.slnx --verify-no-changes --severity warn
 
       - name: Build (Release for Performance)
-        run: dotnet build GeoGuard.Api/GeoGuard.Api.csproj --configuration Release --no-restore && dotnet build GeoGuard.Tests/GeoGuard.Tests.csproj --configuration Release --no-restore
+        run: dotnet build SorTech-Task.slnx --configuration Release --no-restore
 
       - name: Run Unit Tests
-        run: dotnet test GeoGuard.Tests/GeoGuard.Tests.csproj --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test SorTech-Task.slnx --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v4

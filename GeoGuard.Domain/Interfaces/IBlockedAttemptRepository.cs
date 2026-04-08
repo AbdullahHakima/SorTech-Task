@@ -7,5 +7,5 @@ namespace GeoGuard.Domain.Interfaces;
 public interface IBlockedAttemptRepository
 {
     Task<Result> AddLogAsync(BlockedAttemptLog attemptLog);
-    Task<Result<PagedResult<BlockedAttemptLog>>> GetAllAsync(int pageNumber=1,int pageSize=20);
+    Task<Result<PagedResult<BlockedAttemptLog>>> GetAllAsync(int pageNumber = 1, int pageSize = 20);
 }

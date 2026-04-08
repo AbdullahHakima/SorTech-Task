@@ -5,7 +5,7 @@ public record UserAgent
     public string Value { get; } = null!;
     public UserAgent(string value)
     {
-        if(string.IsNullOrEmpty(value))
+        if (string.IsNullOrEmpty(value))
         {
             Value = "UNKNOWN";
             return;

@@ -6,7 +6,7 @@ using System.Net;
 
 namespace GeoGuard.Domain.Services;
 
-public class BlockVerificationService:IBlockVerificationService
+public class BlockVerificationService : IBlockVerificationService
 {
     private readonly IBlockedCountryRepository _countryRepository;
     private readonly IBlockedAttemptRepository _attemptRepository;
