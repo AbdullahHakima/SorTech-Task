@@ -1,8 +1,10 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="D:/SorTech-Task/GeoGuard.Domain/GeoGuard.Domain.csproj" />
-    <Project Path="D:/SorTech-Task/GeoGuard.Infrastructure/GeoGuard.Infrastructure.csproj" />
+    <Project Path="GeoGuard.Domain/GeoGuard.Domain.csproj" />
+    <Project Path="GeoGuard.Infrastructure/GeoGuard.Infrastructure.csproj" />
     <Project Path="GeoGuard.Api/GeoGuard.Api.csproj" Id="8f840cd8-a2fd-40ae-b4d8-8e090a4bb93d" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="GeoGuard.Tests/GeoGuard.Tests.csproj" />
+  </Folder>
 </Solution>
